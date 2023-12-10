@@ -1,27 +1,27 @@
 const Fighter = require("./src/Fighter.js");
+const Weapon = require("./src/Weapon.js");
+const Shield = require("./src/Shield.js");
 
-/** Create Heracles  */
-const heracles = new Fighter("🧔 Heracles", 20, 6);
+const Protector = new Shield();
+const Sword = new Weapon("🗡️ Sword")
+const Heracles = new Fighter("🧔‍♂️ Heracles", 20, 6, Sword, Protector);
+const Boar = new Fighter("🐗 Erymanthian Boar", 25, 12);
 
-/** Create the opponent  */
-const boar = new Fighter("🐗 Erymanthian Boar", 25, 12);
+let round = 0
 
-/**
- * Helper to produce the result of a round
- */
-const roundDisplay = (fighter1, fighter2) => {
-  return `${fighter1.name} 🗡️  ${fighter2.name} 💙 ${fighter2.name} : ${fighter2.life}`;
-};
+while (Heracles.isAlive() && Boar.isAlive()) {
+  round++;
+  console.log(`🔔 Round ${round}`);
+  Heracles.fight(Boar);
+  console.log(`${Heracles.name} 🗡️  ${Boar.name} 💙: ${Boar.life}`);
+  Boar.fight(Heracles);
+  console.log(`${Boar.name} 🗡️  ${Heracles.name} 💙: ${Heracles.life}`);
+}
 
-/**
- * Helper to dispatch fighters between winner and loser
- */
-const score = (fighter1, fighter2) => {
-  return fighter1.isAlive() ? {
-    winner: fighter1,
-    loser: fighter2,
-  } : {
-    winner: fighter2,
-    loser: fighter1
-  };
-};
+if (Heracles.life === 0) {
+  console.log(`💀 ${Heracles.name} is dead`)
+  console.log(`🏆 ${Boar.name} wins! (💙 ${Boar.life}) `);
+} else {
+  console.log(`💀 ${Boar.name} is dead`)
+  console.log(`🏆 ${Heracles.name} wins! (💙 ${Heracles.life})`);
+}
