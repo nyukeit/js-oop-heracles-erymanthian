@@ -2,8 +2,8 @@ const Fighter = require("./src/Fighter.js");
 const Weapon = require("./src/Weapon.js");
 const Shield = require("./src/Shield.js");
 
-const Protector = new Shield();
-const Sword = new Weapon("🗡️ Sword")
+const Protector = new Shield(10);
+const Sword = new Weapon("🗡️ Sword", 1)
 const Heracles = new Fighter("🧔‍♂️ Heracles", 20, 6, Sword, Protector);
 const Boar = new Fighter("🐗 Erymanthian Boar", 25, 12);
 

@@ -1,7 +1,7 @@
 const MAX_LIFE = 100;
 
 class Fighter {
-    constructor(name, strength, dexterity, weapon, shield) {
+    constructor(name, strength, dexterity, weapon = null, shield = null) {
         this.name = name;
         this.strength = strength;
         this.dexterity = dexterity;
@@ -10,17 +10,18 @@ class Fighter {
         this.life = MAX_LIFE;
     };
 
+    // Get Damage from the weapon if the weapon is assigned
     getWeaponDamage() {
         return this.weapon ? this.weapon.damage : 0;
     }
 
+    // Get Protection from the shield if the shield is assigned
     getShieldProtection() {
         return this.shield ? this.shield.protection : 0;
     }
     
     // Method to calculate Damage done (Fighter Strength + Weapon Damage)
     getDamage() {
-        // console.log(this.getWeaponDamage());
         return this.strength + this.getWeaponDamage();
     };
 
